@@ -1,0 +1,14 @@
+[{
+	"modid": "jsoncrops",
+	"name": "JSON Crops",
+	"description": "JSONable crops & Essences",
+	"version": "@VERSION@",
+	"mcversion": "1.7.10",
+	"url": "https://github.com/cblair91/JSON-Crops",
+	"updateUrl": "",
+	"authorList": ["Cblair91"],
+	"credits": "Copyright Cblair91",
+	"logoFile": "",
+	"screenshots": [],
+	"dependencies": []
+}]

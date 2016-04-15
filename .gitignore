@@ -1,0 +1,20 @@
+# Compiled stuff
+*.class
+*.jar
+
+# Eclipse stuff
+.classpath
+.project
+.settings/
+
+# Gradle stuff
+.gradle/
+bin/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Testing stuff
+config/
+crash-reports/
+logs/
+mods/
