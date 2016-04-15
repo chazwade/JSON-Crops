@@ -6,6 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.betadev.jsoncrops.proxy.CommonProxy;
+import com.betadev.jsoncrops.registry.BlockRegistry;
+import com.betadev.jsoncrops.registry.ItemRegistry;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -28,7 +30,7 @@ public class JSONCrops {
 	@SidedProxy(clientSide = ModInfo.CLIENT_PROXY_CLASS, serverSide = ModInfo.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
 
-	public static CreativeTabs tabModpackTweaks = new CreativeTabs("jsoncrops.creativeTab") {
+	public static CreativeTabs creativeTab = new CreativeTabs(ModInfo.MOD_ID + ".creativeTab") {
 		@Override
 		public ItemStack getIconItemStack() {
 			return new ItemStack(Items.map, 1, 0);
@@ -43,8 +45,10 @@ public class JSONCrops {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		log.info("Loading " + ModInfo.MOD_NAME);
-		configDir = new File(event.getModConfigurationDirectory(), "JSONCrops");
+		configDir = new File(event.getModConfigurationDirectory(), ModInfo.MOD_NAME.replace(" ", ""));
 		configDir.mkdirs();
 		proxy.preInit();
+		BlockRegistry.register();
+		ItemRegistry.register();
 	}
 }
