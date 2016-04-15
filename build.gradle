@@ -26,8 +26,10 @@ archivesBaseName = "JSON-Crops"
 
 minecraft {
 	version = forgeVersion
-	runDir = "eclipse/assets"
-	replace "@VERSION", project.version
+	replaceIn "ModInfo.java"
+	replace "@VERSION@", project.version
+	replace "@MCVERSION@", forgeVersion
+	runDir = "eclipse"
 }
 
 def root = project.projectDir.parentFile

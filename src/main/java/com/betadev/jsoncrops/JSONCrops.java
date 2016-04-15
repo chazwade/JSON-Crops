@@ -1,30 +1,31 @@
-package com.betadev.crops;
+package com.betadev.jsoncrops;
 
 import java.io.File;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.betadev.crops.proxy.CommonProxy;
+import com.betadev.jsoncrops.proxy.CommonProxy;
+
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = "jsoncrops", name = "JSON Crops", version = "@VERSION@")
+@Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.MOD_VERSION, dependencies = ModInfo.DEPENDENCIES)
 public class JSONCrops {
-	private Logger log = LogManager.getLogger("JSON Crops");
+	public Logger log = LogManager.getLogger(ModInfo.MOD_NAME);
 	private File configDir;
 
-	@Instance
+	@Mod.Instance(ModInfo.MOD_ID)
 	public static JSONCrops instance;
 
-	@SidedProxy(clientSide = "com.betadev.crops.proxy.ClientProxy", serverSide = "com.betadev.crops.proxy.CommonProxy")
+	@SidedProxy(clientSide = ModInfo.CLIENT_PROXY_CLASS, serverSide = ModInfo.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
 
 	public static CreativeTabs tabModpackTweaks = new CreativeTabs("jsoncrops.creativeTab") {
@@ -39,9 +40,9 @@ public class JSONCrops {
 		}
 	};
 
-	@EventHandler
+	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		log.info("Loading JSON Crops");
+		log.info("Loading " + ModInfo.MOD_NAME);
 		configDir = new File(event.getModConfigurationDirectory(), "JSONCrops");
 		configDir.mkdirs();
 		proxy.preInit();

@@ -1,4 +1,4 @@
-package com.betadev.crops.tile;
+package com.betadev.jsoncrops.tile;
 
 import net.minecraft.tileentity.TileEntity;
 

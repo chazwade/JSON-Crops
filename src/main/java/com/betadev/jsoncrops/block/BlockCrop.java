@@ -1,6 +1,6 @@
-package com.betadev.crops.block;
+package com.betadev.jsoncrops.block;
 
-import com.betadev.crops.tile.TileCrop;
+import com.betadev.jsoncrops.tile.TileCrop;
 
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.ITileEntityProvider;
