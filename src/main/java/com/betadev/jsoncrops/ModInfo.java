@@ -7,5 +7,5 @@ public class ModInfo {
 	public static final String MINECRAFT_VERSION = "@MCVERSION@";
 	public static final String DEPENDENCIES = "";
 	public static final String SERVER_PROXY_CLASS = "com.betadev." + MOD_ID + ".proxy.CommonProxy";
-	public static final String CLIENT_PROXY_CLASS = "com.betadev." + MOD_ID + ".proxy.ServerProxy";
+	public static final String CLIENT_PROXY_CLASS = "com.betadev." + MOD_ID + ".proxy.ClientProxy";
 }

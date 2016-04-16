@@ -53,4 +53,9 @@ public class JSONCrops {
 		ItemRegistry.register();
 		SeedRegistry.register();
 	}
+
+	@Mod.EventHandler
+	public void eventInit(FMLInitializationEvent event) {
+		proxy.init();
+	}
 }
