@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import com.betadev.jsoncrops.proxy.CommonProxy;
 import com.betadev.jsoncrops.registry.BlockRegistry;
 import com.betadev.jsoncrops.registry.ItemRegistry;
+import com.betadev.jsoncrops.registry.SeedRegistry;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -50,5 +51,6 @@ public class JSONCrops {
 		proxy.preInit();
 		BlockRegistry.register();
 		ItemRegistry.register();
+		SeedRegistry.register();
 	}
 }
