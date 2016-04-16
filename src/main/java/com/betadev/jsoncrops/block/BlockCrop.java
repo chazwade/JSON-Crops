@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import com.betadev.jsoncrops.JSONCrops;
 import com.betadev.jsoncrops.ModInfo;
 import com.betadev.jsoncrops.object.Seed;
 import com.betadev.jsoncrops.registry.ItemRegistry;
@@ -78,14 +79,7 @@ public class BlockCrop extends BlockCrops implements ITileEntityProvider {
 			if(world.getBlockMetadata(x, y, z) >= 7) {
 				if(!world.isRemote) {
 					world.setBlockMetadataWithNotify(x, y, z, 0, 3);
-					dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.essence, seed.damage));
-					Random random = new Random();
-					if(random.nextDouble() <= seed.extraSeedChance) {
-						dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.seed, 1, seed.damage));
-					}
-					if(random.nextDouble() <= seed.extraEssenceDropChance) {
-						dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.essence, seed.damage));
-					}
+					doHarvest(world, x, y, z, seed);
 				}
 				player.swingItem();
 				return true;
@@ -106,7 +100,14 @@ public class BlockCrop extends BlockCrops implements ITileEntityProvider {
 
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
+		TileEntity cropTile = world.getTileEntity(x, y, z);
+		if(!(cropTile instanceof TileCrop)) {
+			return;
+		}
 		dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.seed));
+		if(meta >= 7) {
+			doHarvest(world, x, y, z, SeedRegistry.seeds.get(((TileCrop) cropTile).seedName));
+		}
 		super.breakBlock(world, x, y, z, block, meta);
 	}
 
@@ -161,5 +162,17 @@ public class BlockCrop extends BlockCrops implements ITileEntityProvider {
 			growthChance /= 2;
 		}
 		return growthChance;
+	}
+
+	private void doHarvest(World world, int x, int y, int z, Seed seed) {
+		JSONCrops.log.info("BlockCrop.doHarvest() for " + seed.name);
+		dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.essence, 1, seed.damage));
+		Random random = new Random();
+		if(random.nextDouble() <= seed.extraSeedChance) {
+			dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.seed, 1, seed.damage));
+		}
+		if(random.nextDouble() <= seed.extraEssenceDropChance) {
+			dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.essence, 1, seed.damage));
+		}
 	}
 }

@@ -22,7 +22,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.MOD_VERSION, dependencies = ModInfo.DEPENDENCIES)
 public class JSONCrops {
-	public Logger log = LogManager.getLogger(ModInfo.MOD_NAME);
+	public static Logger log = LogManager.getLogger(ModInfo.MOD_NAME);
 	private File configDir;
 
 	@Mod.Instance(ModInfo.MOD_ID)

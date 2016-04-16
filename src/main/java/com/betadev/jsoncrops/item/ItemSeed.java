@@ -2,12 +2,18 @@ package com.betadev.jsoncrops.item;
 
 import com.betadev.jsoncrops.JSONCrops;
 import com.betadev.jsoncrops.ModInfo;
+import com.betadev.jsoncrops.object.Seed;
 import com.betadev.jsoncrops.registry.BlockRegistry;
+import com.betadev.jsoncrops.registry.SeedRegistry;
+import com.betadev.jsoncrops.tile.TileCrop;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -19,13 +25,22 @@ public class ItemSeed extends Item implements IPlantable {
 		super();
 		setUnlocalizedName(ModInfo.MOD_ID + ".seed");
 		setCreativeTab(JSONCrops.creativeTab);
+		setHasSubtypes(true);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public String getItemStackDisplayName(ItemStack stack) {
+		return String.format(StatCollector.translateToLocal(getUnlocalizedName()), StatCollector.translateToLocal(SeedRegistry.getSeed(stack.getItemDamage()).name));
 	}
 
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
 		Block block = world.getBlock(x, y, z);
+		Seed seed = SeedRegistry.getSeed(stack.getItemDamage());
 		if(isSoil(world, x, y, z, block) && ForgeDirection.getOrientation(side) == ForgeDirection.UP && world.isAirBlock(x, y + 1, z)) {
 			world.setBlock(x, y + 1, z, BlockRegistry.crop);
+			((TileCrop) world.getTileEntity(x, y + 1, z)).seedName = seed.name;
 			if(!player.capabilities.isCreativeMode) {
 				player.inventory.decrStackSize(player.inventory.currentItem, 1);
 			}
