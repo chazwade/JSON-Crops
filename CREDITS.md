@@ -6,3 +6,4 @@ following names for their contribution to the project.
 * Cblair91
 
 == Contributors ==
+* Shadowfactsmc - Helping with seed & essence rendering system
