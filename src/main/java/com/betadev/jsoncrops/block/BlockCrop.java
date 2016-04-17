@@ -3,7 +3,6 @@ package com.betadev.jsoncrops.block;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.betadev.jsoncrops.JSONCrops;
 import com.betadev.jsoncrops.ModInfo;
 import com.betadev.jsoncrops.object.Seed;
 import com.betadev.jsoncrops.registry.ItemRegistry;
@@ -58,12 +57,8 @@ public class BlockCrop extends BlockCrops implements ITileEntityProvider {
 		int lightLevel = world.getBlockLightValue(x, y + 1, z);
 		if(lightLevel >= seed.lightLevelMin && lightLevel <= seed.lightLevelMax) {
 			int meta = world.getBlockMetadata(x, y, z);
-			if(meta < 7) {
-				float growthChance = getGrowthChance(world, x, y, z);
-				if(random.nextInt((int) (25 / growthChance) + 1) == 0) {
-					meta++;
-					world.setBlockMetadataWithNotify(x, y, z, meta, 2);
-				}
+			if(meta < 7 && random.nextInt((int) (25.0f / getGrowthChance(world, x, y, z)) + 1) == 0) {
+				world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
 			}
 		}
 	}
@@ -128,6 +123,17 @@ public class BlockCrop extends BlockCrops implements ITileEntityProvider {
 		return null;
 	}
 
+	private void doHarvest(World world, int x, int y, int z, Seed seed) {
+		dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.essence, 1, seed.damage));
+		Random random = new Random();
+		if(random.nextDouble() <= seed.extraSeedChance) {
+			dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.seed, 1, seed.damage));
+		}
+		if(random.nextDouble() <= seed.extraEssenceDropChance) {
+			dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.essence, 1, seed.damage));
+		}
+	}
+
 	// Thank you minecraft for this <3
 	private float getGrowthChance(World world, int x, int y, int z) {
 		float growthChance = 1;
@@ -161,17 +167,5 @@ public class BlockCrop extends BlockCrops implements ITileEntityProvider {
 			growthChance /= 2;
 		}
 		return growthChance;
-	}
-
-	private void doHarvest(World world, int x, int y, int z, Seed seed) {
-		JSONCrops.log.info("BlockCrop.doHarvest() for " + seed.name);
-		dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.essence, 1, seed.damage));
-		Random random = new Random();
-		if(random.nextDouble() <= seed.extraSeedChance) {
-			dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.seed, 1, seed.damage));
-		}
-		if(random.nextDouble() <= seed.extraEssenceDropChance) {
-			dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.essence, 1, seed.damage));
-		}
 	}
 }

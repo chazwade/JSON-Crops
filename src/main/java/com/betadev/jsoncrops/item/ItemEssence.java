@@ -40,6 +40,7 @@ public class ItemEssence extends Item {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister ir) {
 		icon = ir.registerIcon(ModInfo.MOD_ID + ":essence_overlay");
 	}

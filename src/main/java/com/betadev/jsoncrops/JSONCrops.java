@@ -19,11 +19,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-@Mod(
-	modid = ModInfo.MOD_ID,
-	name = ModInfo.MOD_NAME,
-	version = ModInfo.MOD_VERSION,
-	dependencies = ModInfo.DEPENDENCIES)
+@Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.MOD_VERSION, dependencies = ModInfo.DEPENDENCIES)
 public class JSONCrops {
 	public static Logger log = LogManager.getLogger(ModInfo.MOD_NAME);
 	private File configDir;
@@ -31,9 +27,7 @@ public class JSONCrops {
 	@Mod.Instance(ModInfo.MOD_ID)
 	public static JSONCrops instance;
 
-	@SidedProxy(
-		clientSide = ModInfo.CLIENT_PROXY_CLASS,
-		serverSide = ModInfo.SERVER_PROXY_CLASS)
+	@SidedProxy(clientSide = ModInfo.CLIENT_PROXY_CLASS, serverSide = ModInfo.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
 
 	public static CreativeTabs creativeTab = new CreativeTabs(ModInfo.MOD_ID + ".creativeTab") {

@@ -8,8 +8,7 @@ public class Seed {
 	public double extraSeedChance = 0;
 	public double extraEssenceDropChance = 0;
 
-	public Seed() {
-	};
+	public Seed() {}
 
 	public Seed(String name) {
 		this.name = name;
