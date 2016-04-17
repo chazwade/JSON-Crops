@@ -14,7 +14,7 @@ public class EssenceItemRenderer implements IItemRenderer {
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-		return type == ItemRenderType.INVENTORY;
+		return true;
 	}
 
 	@Override
@@ -24,6 +24,12 @@ public class EssenceItemRenderer implements IItemRenderer {
 
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+		float scale = 1;
+		if(type != ItemRenderType.INVENTORY) {
+			scale = 0.065f;
+			GL11.glTranslatef(0, -0.1f, 0);
+		}
+		GL11.glScalef(scale, scale, scale);
 		// Render resource
 		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 		renderItem.renderIcon(5, 5, Blocks.cobblestone.getIcon(0, 0), 6, 1);
