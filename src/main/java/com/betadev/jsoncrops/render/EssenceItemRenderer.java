@@ -9,7 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
-public class SeedItemRenderer implements IItemRenderer {
+public class EssenceItemRenderer implements IItemRenderer {
 	private RenderItem renderItem = RenderItem.getInstance();
 
 	@Override
@@ -26,12 +26,9 @@ public class SeedItemRenderer implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		// Render resource
 		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-		renderItem.renderIcon(4, 4, Blocks.cobblestone.getIcon(0, 0), 1, 3);
-		renderItem.renderIcon(2, 7, Blocks.cobblestone.getIcon(0, 0), 7, 4);
-		renderItem.renderIcon(6, 10, Blocks.cobblestone.getIcon(0, 0), 2, 3);
-		renderItem.renderIcon(9, 8, Blocks.cobblestone.getIcon(0, 0), 3, 4);
-		renderItem.renderIcon(10, 4, Blocks.cobblestone.getIcon(0, 0), 1, 1);
-		renderItem.renderIcon(10, 5, Blocks.cobblestone.getIcon(0, 0), 3, 4);
+		renderItem.renderIcon(5, 5, Blocks.cobblestone.getIcon(0, 0), 6, 1);
+		renderItem.renderIcon(2, 6, Blocks.cobblestone.getIcon(0, 0), 12, 5);
+		renderItem.renderIcon(5, 11, Blocks.cobblestone.getIcon(0, 0), 6, 1);
 		// Render overlay
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDepthMask(false);

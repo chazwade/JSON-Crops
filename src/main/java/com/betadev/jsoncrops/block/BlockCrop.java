@@ -1,7 +1,6 @@
 package com.betadev.jsoncrops.block;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 import com.betadev.jsoncrops.JSONCrops;
@@ -146,7 +145,7 @@ public class BlockCrop extends BlockCrops implements ITileEntityProvider {
 		for(int loopX = x - 1; loopX <= x + 1; loopX++) {
 			for(int loopZ = z - 1; loopZ <= z + 1; loopZ++) {
 				float chance = 0;
-				if(world.getBlock(loopX, y - 1, loopZ).canSustainPlant(world,  loopX,  y - 1,  loopZ,  ForgeDirection.UP, this)) {
+				if(world.getBlock(loopX, y - 1, loopZ).canSustainPlant(world, loopX, y - 1, loopZ, ForgeDirection.UP, this)) {
 					chance = 1;
 					if(world.getBlock(loopX, y - 1, loopZ).isFertile(world, loopX, y - 1, loopZ)) {
 						chance = 3;
@@ -158,7 +157,7 @@ public class BlockCrop extends BlockCrops implements ITileEntityProvider {
 				growthChance += chance;
 			}
 		}
-		if(flag1 || flag && flag1) {
+		if(flag1 || flag && flag2) {
 			growthChance /= 2;
 		}
 		return growthChance;
