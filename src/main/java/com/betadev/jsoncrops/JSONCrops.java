@@ -5,6 +5,7 @@ import java.io.File;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.betadev.jsoncrops.config.JsonConfig;
 import com.betadev.jsoncrops.proxy.CommonProxy;
 import com.betadev.jsoncrops.registry.BlockRegistry;
 import com.betadev.jsoncrops.registry.ItemRegistry;
@@ -51,6 +52,7 @@ public class JSONCrops {
 		BlockRegistry.register();
 		ItemRegistry.register();
 		SeedRegistry.register();
+		JsonConfig.init(new File(configDir, "Seeds.json"));
 	}
 
 	@Mod.EventHandler

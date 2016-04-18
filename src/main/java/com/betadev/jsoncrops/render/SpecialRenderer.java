@@ -2,9 +2,6 @@ package com.betadev.jsoncrops.render;
 
 import org.lwjgl.opengl.GL11;
 
-import com.betadev.jsoncrops.object.Seed;
-import com.betadev.jsoncrops.registry.SeedRegistry;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
@@ -12,8 +9,6 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
 
 public class SpecialRenderer implements IItemRenderer {
-	public Seed seed;
-
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
 		return true;
@@ -36,7 +31,6 @@ public class SpecialRenderer implements IItemRenderer {
 
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-		seed = SeedRegistry.getSeed(item.getItemDamage());
 		float scale = 1;
 		if(type != ItemRenderType.INVENTORY) {
 			scale = 0.065f;

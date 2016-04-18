@@ -129,7 +129,7 @@ public class BlockCrop extends BlockCrops implements ITileEntityProvider {
 		if(random.nextDouble() <= seed.extraSeedChance) {
 			dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.seed, 1, seed.damage));
 		}
-		if(random.nextDouble() <= seed.extraEssenceDropChance) {
+		if(random.nextDouble() <= seed.extraEssenceChance) {
 			dropBlockAsItem(world, x, y, z, new ItemStack(ItemRegistry.essence, 1, seed.damage));
 		}
 	}

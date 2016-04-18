@@ -1,5 +1,7 @@
 package com.betadev.jsoncrops.item;
 
+import java.util.List;
+
 import com.betadev.jsoncrops.JSONCrops;
 import com.betadev.jsoncrops.ModInfo;
 import com.betadev.jsoncrops.object.Seed;
@@ -11,6 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,6 +33,15 @@ public class ItemSeed extends Item implements IPlantable {
 		setUnlocalizedName(ModInfo.MOD_ID + ".seed");
 		setCreativeTab(JSONCrops.creativeTab);
 		setHasSubtypes(true);
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void getSubItems(Item item, CreativeTabs tabs, List list) {
+		for(Seed seed : SeedRegistry.seeds.values()) {
+			list.add(new ItemStack(this, 1, seed.damage));
+		}
 	}
 
 	@Override
