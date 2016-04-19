@@ -9,6 +9,7 @@ import com.betadev.jsoncrops.config.JsonConfig;
 import com.betadev.jsoncrops.proxy.CommonProxy;
 import com.betadev.jsoncrops.registry.BlockRegistry;
 import com.betadev.jsoncrops.registry.ItemRegistry;
+import com.betadev.jsoncrops.registry.RecipeRegistry;
 import com.betadev.jsoncrops.registry.SeedRegistry;
 
 import cpw.mods.fml.common.Mod;
@@ -58,5 +59,7 @@ public class JSONCrops {
 	@Mod.EventHandler
 	public void eventInit(FMLInitializationEvent event) {
 		proxy.init();
+		RecipeRegistry.register();
+		// TODO: register essence into oreDict
 	}
 }

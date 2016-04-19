@@ -12,7 +12,7 @@ public class SeedRegistry {
 	private static int lastIndex = 0;
 
 	public static void register() {
-		registerSeed(new Seed("Test", Blocks.dirt));
+		registerSeed(new Seed("Test", Blocks.dirt, "dirt", "dirt:2#8"));
 	}
 
 	public static Seed getSeed(int damage) {

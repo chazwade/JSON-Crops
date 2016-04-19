@@ -15,32 +15,18 @@ public class Seed {
 	public double extraEssenceChance;
 	public Block blockTexture;
 	public Item itemTexture;
+	public String inputItem;
+	public String outputItem;
 
-	public Seed(String name, Block blockTexture) {
-		this(name, 9, Integer.MAX_VALUE, 1, 0, 0, blockTexture, null);
+	public Seed(String name, Block blockTexture, String inputItem, String outputItem) {
+		this(name, 9, Integer.MAX_VALUE, 1, 0, 0, blockTexture, null, inputItem, outputItem);
 	}
 
-	public Seed(String name, Item itemTexture) {
-		this(name, 9, Integer.MAX_VALUE, 1, 0, 0, null, itemTexture);
+	public Seed(String name, Item itemTexture, String inputItem, String outputItem) {
+		this(name, 9, Integer.MAX_VALUE, 1, 0, 0, null, itemTexture, inputItem, outputItem);
 	}
 
-	public Seed(String name, int tier, Block blockTexture) {
-		this(name, 9, Integer.MAX_VALUE, tier, 0, 0, blockTexture, null);
-	}
-
-	public Seed(String name, int tier, Item itemTexture) {
-		this(name, 9, Integer.MAX_VALUE, tier, 0, 0, null, itemTexture);
-	}
-
-	public Seed(String name, int lightLevelMin, int lightLevelMax, int tier, double extraSeedChance, double extraEssenceChance, Block blockTexture) {
-		this(name, lightLevelMin, lightLevelMax, tier, extraSeedChance, extraEssenceChance, blockTexture, null);
-	}
-
-	public Seed(String name, int lightLevelMin, int lightLevelMax, int tier, double extraSeedChance, double extraEssenceChance, Item itemTexture) {
-		this(name, lightLevelMin, lightLevelMax, tier, extraSeedChance, extraEssenceChance, null, itemTexture);
-	}
-
-	public Seed(String name, int lightLevelMin, int lightLevelMax, int tier, double extraSeedChance, double extraEssenceChance, Block blockTexture, Item itemTexture) {
+	public Seed(String name, int lightLevelMin, int lightLevelMax, int tier, double extraSeedChance, double extraEssenceChance, Block blockTexture, Item itemTexture, String inputItem, String outputItem) {
 		this.name = name;
 		this.lightLevelMin = lightLevelMin;
 		this.lightLevelMax = lightLevelMax;
@@ -49,5 +35,7 @@ public class Seed {
 		this.extraEssenceChance = extraEssenceChance;
 		this.blockTexture = blockTexture;
 		this.itemTexture = itemTexture;
+		this.inputItem = inputItem;
+		this.outputItem = outputItem;
 	}
 }
